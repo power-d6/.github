@@ -5,18 +5,23 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      repositories:
+        description: A list of repositories to manage
+        required: true
+        default: |
+            power-d6/.github
+          # Add new repositories here!
 
 jobs:
-  set-label:
+  settings:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
       - name: Repo Settings Sync
         uses: kbrashears5/github-action-repo-settings-sync@2.0
         with:
-          REPOSITORIES:  |
-              power-d6/.github
-            # Add new repositories here!
+          REPOSITORIES: ${{ inputs.repositories }}
           ALLOW_ISSUES: true
           ALLOW_PROJECTS: false
           ALLOW_WIKI: false
@@ -32,3 +37,12 @@ jobs:
           BRANCH_PROTECTION_CODE_OWNERS: true
           BRANCH_PROTECTION_ENFORCE_ADMINS: false
           TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Label Syncer
+        uses: micnncim/action-label-syncer@v1.3.0
+        with:
+          repository: ${{ inputs.repositories }}
+          token: ${{ secrets.ORG_ADMIN_TOKEN }}
