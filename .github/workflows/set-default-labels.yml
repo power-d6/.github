@@ -9,14 +9,12 @@ on:
 jobs:
   set-label:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - repository: .github
-          # Add new repositories here!
     steps:
       - uses: actions/checkout@v3.3.0
       - name: Label Syncer
         uses: micnncim/action-label-syncer@v1.3.0
         with:
-          repository: ${{ matrix.repository }}
+          repository: |
+              power-d6/.github
+            # Add new repositories here!
+          token: ${{ secrets.ORG_ADMIN_TOKEN }}
