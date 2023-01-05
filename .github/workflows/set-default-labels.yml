@@ -15,8 +15,8 @@ jobs:
           - repository: .github
           # Add new repositories here!
     steps:
+      - uses: actions/checkout@v3.3.0
       - name: Label Syncer
         uses: micnncim/action-label-syncer@v1.3.0
         with:
-          manifest: ${{env.GITHUB_WORKSPACE}}/.github/labels.yml
           repository: ${{ matrix.repository }}
