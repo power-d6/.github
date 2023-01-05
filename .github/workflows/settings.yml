@@ -1,0 +1,34 @@
+name: Sync Repository Settings
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  set-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Repo Settings Sync
+        uses: kbrashears5/github-action-repo-settings-sync@2.0
+        with:
+          REPOSITORIES:  |
+              power-d6/.github
+            # Add new repositories here!
+          ALLOW_ISSUES: true
+          ALLOW_PROJECTS: false
+          ALLOW_WIKI: false
+          SQUASH_MERGE: true
+          MERGE_COMMIT: false
+          REBASE_MERGE: true
+          AUTO_MERGE: false
+          DELETE_HEAD: true
+          BRANCH_PROTECTION_ENABLED: true
+          BRANCH_PROTECTION_NAME: main
+          BRANCH_PROTECTION_REQUIRED_REVIEWERS: 1
+          BRANCH_PROTECTION_DISMISS: true
+          BRANCH_PROTECTION_CODE_OWNERS: true
+          BRANCH_PROTECTION_ENFORCE_ADMINS: false
+          TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
