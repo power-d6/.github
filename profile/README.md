@@ -1,4 +1,4 @@
-# [powerd6](powerd6.org)
+# [powerd6](https://powerd6.org)
 
 Welcome to the powerd6 project!
 
