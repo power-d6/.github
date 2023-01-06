@@ -10,8 +10,8 @@ on:
         description: A list of repositories to manage
         required: true
         default: |
-            power-d6/.github
-            power-d6/specification
+              power-d6/.github
+              power-d6/specification
           # Add new repositories here!
 
 jobs:
