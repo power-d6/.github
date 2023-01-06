@@ -11,8 +11,9 @@ on:
         required: true
         # Add new repositories here!
         default: |
-                  power-d6/specification
-                  power-d6/.github
+          |
+          power-d6/specification
+          power-d6/.github
 
 jobs:
   settings:
