@@ -6,8 +6,10 @@ This document explain the rules and the expectations when contributing to the pr
 
 ## Table of contents
 - [Code of Conduct](#code-of-conduct)
-- [Git Style Guide](#git-style-guide)
-- [Versioning](#versioning)
+- [Code contributions](#code-contributions)
+    - [Git Style Guide](#git-style-guide)
+    - [Versioning](#versioning)
+- [Sharing ideas for modules](#sharing-ideas-for-modules)
 - [Addendums](#addendums)
     - [Issue Labels](#issue-labels)
 
@@ -19,13 +21,23 @@ This document explain the rules and the expectations when contributing to the pr
 
 This project and everyone participating in it is governed by a [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
-## Git Style Guide
+## Code Contributions
+
+### Git Style Guide
 
 This project follows the [Git style guide](https://github.com/agis/git-style-guide) for code contributions. This set of guidelines help us keep a clean and maintainable history of code changes.
 
-## Versioning
+### Versioning
 
 Published artifacts must follow [Semantic Versioning](https://semver.org/) and changes must be documented according to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) principles.
+
+## Sharing ideas for modules
+
+When sharing ideas for modules with the community, use the [Module Ideas board](https://github.com/orgs/power-d6/projects/1/views/1).
+
+By doing so, you agree to help define and refine the idea, assuming an editorial role in the completion of the same.
+
+Ideas, once refined will be put to vote and prioritized by their impact. Other contributors are free to pick ideas and work on them.
 
 
 ## Addendums
