@@ -1,0 +1,22 @@
+on:
+  workflow_call:
+  pull_request:
+    types:
+      # Run when a PR is manipulated
+      - "opened"
+      - "reopened"
+      - "synchronize"
+      # Or when new labels are added (to check `skip-label`)
+      - "labeled"
+      - "unlabeled"
+
+jobs:
+  settings:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CHANGELOG.md
+        uses: brettcannon/check-for-changed-files@v1
+        with:
+          file-pattern: "CHANGELOG.md"
+          skip-label: "🕵🏻‍♂️ aspect: no changelog" # Do not run this check if this label is applied
+          failure-message: "Missing an update to the changelog file: ${file-pattern}; Please update the changelog to reflect these changes."

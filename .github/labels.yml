@@ -57,6 +57,9 @@
 - name: "🤖 aspect: dx"
   description: Concerns developers' experience with the codebase
   color: 04338c
+- name: "🕵🏻‍♂️ aspect: no changelog"
+  description: A change that does not affect end-users and does not need to be publicized
+  color: 04338c
 # Skill
 ## Empty
 # Talk
