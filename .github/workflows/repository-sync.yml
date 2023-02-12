@@ -15,8 +15,9 @@ jobs:
         uses: kbrashears5/github-action-repo-settings-sync@2.0
         with:
           REPOSITORIES: |
-            power-d6/specification
             power-d6/.github
+            power-d6/specification
+            power-d6/landing-page
           ALLOW_ISSUES: true
           ALLOW_PROJECTS: false
           ALLOW_WIKI: false
@@ -40,6 +41,7 @@ jobs:
         uses: micnncim/action-label-syncer@v1.3.0
         with:
           repository: |
-            power-d6/specification
             power-d6/.github
+            power-d6/specification
+            power-d6/landing-page
           token: ${{ secrets.ORG_ADMIN_TOKEN }}
