@@ -6,4 +6,4 @@ We are enabling new ways to play tabletop RPG games, empowering players to creat
 
 ## Contributing
 
-If you have interest in contributing to the project, please read the [CONTRIBUTING.md](https://github.com/power-d6/.github/blob/main/CONTRIBUTING.md) file.
+If you have interest in contributing to the project, please read the [CONTRIBUTING.md](https://github.com/powerd6/.github/blob/main/CONTRIBUTING.md) file.
