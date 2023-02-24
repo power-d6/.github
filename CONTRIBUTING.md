@@ -33,7 +33,7 @@ Published artifacts must follow [Semantic Versioning](https://semver.org/) and c
 
 ## Sharing ideas for modules
 
-When sharing ideas for modules with the community, use the [Module Ideas board](https://github.com/orgs/power-d6/projects/1/views/1).
+When sharing ideas for modules with the community, use the [Module Ideas board](https://github.com/orgs/powerd6/projects/1/views/1).
 
 By doing so, you agree to help define and refine the idea, assuming an editorial role in the completion of the same.
 
@@ -46,4 +46,4 @@ Ideas, once refined will be put to vote and prioritized by their impact. Other c
 
 This project uses the repository labels as defined in the [Creative Commons OpenSource labeling system](https://opensource.creativecommons.org/contributing-code/repo-labels/), and labels are automatically created on all repositories.
 
-To propose new labels, please open an issue against [this repository](https://github.com/power-d6/.github) with more details.
+To propose new labels, please open an issue against [this repository](https://github.com/powerd6/.github) with more details.
