@@ -18,6 +18,7 @@ jobs:
             powerd6/.github
             powerd6/specification
             powerd6/landing-page
+            powerd6/tools
           ALLOW_ISSUES: true
           ALLOW_PROJECTS: false
           ALLOW_WIKI: false
@@ -44,4 +45,5 @@ jobs:
             powerd6/.github
             powerd6/specification
             powerd6/landing-page
+            powerd6/tools
           token: ${{ secrets.ORG_ADMIN_TOKEN }}
