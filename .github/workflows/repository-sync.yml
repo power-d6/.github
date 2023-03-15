@@ -16,6 +16,7 @@ jobs:
         with:
           REPOSITORIES: |
             powerd6/.github
+            powerd6/core-rules
             powerd6/specification
             powerd6/landing-page
             powerd6/tools
@@ -43,6 +44,7 @@ jobs:
         with:
           repository: |
             powerd6/.github
+            powerd6/core-rules
             powerd6/specification
             powerd6/landing-page
             powerd6/tools
