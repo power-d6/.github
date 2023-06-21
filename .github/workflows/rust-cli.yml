@@ -1,6 +1,6 @@
 name: Continuous Integration (Powerd6)
 on:
-  pull_request:
+  workflow_call:
 jobs:
   build:
     runs-on: ubuntu-latest
