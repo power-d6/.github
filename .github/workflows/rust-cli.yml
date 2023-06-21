@@ -1,0 +1,28 @@
+name: Continuous Integration (Powerd6)
+on:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install powerd6_cli
+        run: |-
+          cargo install --git https://github.com/powerd6/tools --force
+      - name: Build Module
+        run: |-
+          powerd6_cli build ./
+      - name: Upload Module output
+        uses: actions/upload-artifact@v3
+        with:
+          name: module
+          path: module.json
+          retention-days: 2
