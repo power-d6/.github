@@ -1,4 +1,4 @@
-name: Continuous Integration (Powerd6)
+name: Continuous Integration (Rust)
 on:
   workflow_call:
 jobs:
@@ -14,15 +14,32 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: Install powerd6_cli
-        run: |-
-          cargo install --git https://github.com/powerd6/tools --force
-      - name: Build Module
-        run: |-
-          powerd6_cli build ./
-      - name: Upload Module output
-        uses: actions/upload-artifact@v3
+      - uses: actions/cache@v3
         with:
-          name: module
-          path: module.json
-          retention-days: 2
+          path: |
+            target/
+          key: ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.lock') }}
+      - name: Build
+        run: |-
+          cargo build --workspace
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v3
+        with:
+          path: |
+            target/
+          key: ${{ runner.os }}-cargo-target-${{ hashFiles('**/Cargo.lock') }}
+      - name: Test
+        run: |-
+          cargo test --workspace
