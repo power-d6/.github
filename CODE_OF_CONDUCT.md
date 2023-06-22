@@ -132,4 +132,4 @@ For answers to common questions about this code of conduct, see the FAQ at
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
 
-[contact-link]:  mailto:hector.zacharias@gmail.com?cc=abuse@powerd6.org&subject=%5BCodeOfConduct%5D%20Request%20for%20help&body=I%20would%20like%20to%20report%20a%20violation%20of%20the%20Code%20of%20Conduct%20in%20the%20powerd6%20project.%0D%0A%0D%0AThe%20issue%20appears%20here%3A%0D%0A%0D%0A-%20%3Clink%3E%0D%0A-%20%3Cscreenshot%3E%0D%0A-%20%3Cetc%3E 
+[contact-link]:  mailto:contact@powerd6.org?subject=%5BCodeOfConduct%5D%20Request%20for%20help&body=I%20would%20like%20to%20report%20a%20violation%20of%20the%20Code%20of%20Conduct%20in%20the%20powerd6%20project.%0D%0A%0D%0AThe%20issue%20appears%20here%3A%0D%0A%0D%0A%2F%2F%20Add%20the%20relevant%20materials%20for%20the%20investigation.%20Links%2C%20images%2C%20and%20explanations%20are%20all%20appreciated. 
