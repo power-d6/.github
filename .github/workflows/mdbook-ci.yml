@@ -15,11 +15,12 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: Install mdbook
+      - name: Install mdbook and plugins
         run: |-
           cargo install mdbook || true
-          cargo install mdbook-toc || true
           cargo install mdbook-linkcheck || true
+          cargo install mdbook-footnote || true
+          cargo install mdbook-toc || true
       - name: Build mdbook
         run: |-
           mdbook build
