@@ -11,5 +11,8 @@
     "@pulumi/pulumi": "^3",
     "@pulumiverse/gandi": "^0",
     "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "format": "npx ts-standard --fix"
   }
 }
