@@ -13,11 +13,16 @@ const organization = new github.OrganizationSettings("powerd6Organization", {
     dependabotSecurityUpdatesEnabledForNewRepositories: true,
     dependencyGraphEnabledForNewRepositories: true,
     secretScanningEnabledForNewRepositories: true,
+    webCommitSignoffRequired: true,
     
-    membersCanCreatePrivatePages: false,
+    membersCanCreateRepositories: false,
     membersCanCreatePrivateRepositories: false,
     membersCanCreatePublicRepositories: false,
-    membersCanCreateRepositories: false,
+    membersCanCreatePages: true,
+    membersCanCreatePrivatePages: false,
+
+    hasOrganizationProjects: true,
+    hasRepositoryProjects: false,
 }, {
     protect: true,
 });
