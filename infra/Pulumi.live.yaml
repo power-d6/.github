@@ -1,4 +1,6 @@
 config:
+  gandi:key:
+    secure: AAABAKJYd7jozVPJdvl4Khj3QLMHfr6wNJXJbhnQn3IyGYIquGgDJhqm2DwR9AozCgkyXgUy0Wk=
   github:owner: powerd6
   github:token:
-    secure: AAABAIRkYx25Y2zrZaVC43GzkvVBV5FWZsmVtrj3bIwKUn6dUAl4cLI+BUb9sKk1eKRn9hHmm5xjvBHfmweUUeNi06D4OChjy2UjgDXx2jBHmX49vmu1hCOFFi97xQ1CtGXyghiYjNJ0AGWc3XSm+XA/VNxePMS5kytBUDY=
+    secure: AAABAMGQyhzvxeFhFLlFJSnrR2rqF0CoXjN9QWGScR5QSAeDvk0kWvyhtseyaTidWI/9w/n2UNDNi2dFKTXZJSzCOB6kjjgyXoTN84v9cOh6Pm+6uno9QGqq6CQxruflkW22+JQyQh/5GyX4EV3kcnRvMP9YnxfaAgzLTVt+Iq+OCgaJh/M9pk/9s67n4RgZyod5WPBKg2aYZ3r9KokOD/X3hVQm1iBqcsgD+03fYp+q5NvNsSvglpQl8kUbfZdDw6g23buTpxIdDJ05EEgzFV3w1cB9Ng==
