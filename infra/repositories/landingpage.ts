@@ -1,0 +1,72 @@
+import * as pulumi from "@pulumi/pulumi";
+import * as github from "@pulumi/github";
+import * as gandi from "@pulumiverse/gandi";
+
+export const repository = new github.Repository("landingpageRepository", {
+    allowMergeCommit: false,
+    deleteBranchOnMerge: true,
+    description: "The landing page of the project",
+    hasDownloads: true,
+    hasIssues: true,
+    name: "landing-page",
+    pages: {
+        cname: "powerd6.org",
+        source: {
+            branch: "main",
+        },
+    },
+    topics: [
+        "website",
+        "landing-page",
+    ],
+    visibility: "public",
+    vulnerabilityAlerts: true,
+}, {
+    protect: true,
+});
+
+export const mainBranch = new github.Branch("landingpageRepositoryMainBranch", {
+    repository: repository.name,
+    branch: "main"
+}, {
+    protect: true,
+});
+
+export const defaultBranchRule = new github.BranchDefault("landingpageRepositoryDefaultBranch", {
+    repository: repository.name,
+    branch: mainBranch.branch,
+}, {
+    protect: true,
+});
+
+export const TXT_githubpageschallengepowerd6DnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6DnsRecord", {
+    name: "_github-pages-challenge-powerd6",
+    ttl: 10800,
+    type: "TXT",
+    values: ["\"0fff03dd80f06accdca1457d1a710f\""],
+    zone: "powerd6.org",
+}, {
+    protect: true,
+});
+
+export const CNAME_wwwDnsRecord = new gandi.livedns.Record("CNAME_wwwDnsRecord", {
+    name: "www",
+    ttl: 10800,
+    type: "CNAME",
+    values: ["powerd6.github.io."],
+    zone: "powerd6.org",
+}, {
+    protect: true,
+});
+
+
+
+export const output = {
+    repository: repository.name,
+    mainBranch: mainBranch.branch,
+    defaultBranchRule: defaultBranchRule.branch,
+    githubPages: [
+        TXT_githubpageschallengepowerd6DnsRecord.href,
+        CNAME_wwwDnsRecord.href,
+    ]
+}

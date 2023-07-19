@@ -1,0 +1,56 @@
+name: Preview or update Pulumi app powerd6/powerd6/live
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**/*'
+
+
+env:
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  PULUMI_STACK_NAME: powerd6/powerd6/live
+  PULUMI_WORKING_DIRECTORY: infra
+
+jobs:
+  pulumi:
+    name: Pulumi
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Turnstyle
+        if: ${{ github.event_name == 'push' }}
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+
+      - run: npm ci
+        working-directory: ${{ env.PULUMI_WORKING_DIRECTORY }}
+
+      - name: PR previews
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: ${{ env.PULUMI_STACK_NAME }}
+          work-dir: ${{ env.PULUMI_WORKING_DIRECTORY }}
+
+      - name: Apply infrastructure update
+        if: ${{ github.event_name == 'push' }}
+        uses: pulumi/actions@v3
+        with:
+          command: up
+          stack-name: ${{ env.PULUMI_STACK_NAME }}
+          work-dir: ${{ env.PULUMI_WORKING_DIRECTORY }}
