@@ -22,7 +22,12 @@ repositories.forEach(r => {
 
 importScript.push('echo "Initializing Domains"', `mkdir domains`);
 var domains = [
-    'powerd6.org'
+    ['powerd6.org', [
+        ['www','CNAME'],
+        ['_github-pages-challenge-powerd6','TXT'],
+        ['specification','CNAME'],
+        ['_github-pages-challenge-powerd6.specification','TXT'],
+    ]]
 ]
 var defaultDnsRecords = [
     ['@', 'A'],
@@ -38,7 +43,7 @@ var defaultDnsRecords = [
     ['gm3._domainkey', 'CNAME'],
     ['webmail', 'CNAME'],
 ]
-domains.forEach(d=> {
+domains.forEach(([d, dCustomDnsRecords])=> {
     var cleanDomainName = d.replace(/[^a-zA-Z0-9 ]/g, '');
     importScript.push(
         `mkdir domains/${cleanDomainName}`,
@@ -53,8 +58,8 @@ domains.forEach(d=> {
         `echo "import {${cleanDomainName}Nameservers} from './domains/${cleanDomainName}/nameservers';" >> index.ts`,
         `sleep 5`,
     );
-    importScript.push(`mkdir domains/${cleanDomainName}/dns`)
-    defaultDnsRecords.forEach(([rName, rType])=>{
+    importScript.push(`mkdir domains/${cleanDomainName}/dns`);
+    [...defaultDnsRecords, ...dCustomDnsRecords].forEach(([rName, rType])=>{
         var cleanRecordname = `${rType}_${rName.replace('@','at').replace(/[^a-zA-Z0-9 ]/g, '')}`;
         importScript.push(
             `pulumi import gandi:livedns/record:Record ${cleanRecordname}DnsRecord ${d}/${rName}/${rType} -y -o domains/${cleanDomainName}/dns/${cleanRecordname}.ts`,
