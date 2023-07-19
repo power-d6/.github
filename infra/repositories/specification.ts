@@ -54,9 +54,9 @@ export const output = {
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
+    labels: labels.map(l=>l.name),
     githubPages: [
         TXT_githubpageschallengepowerd6specificationDnsRecord.href,
         CNAME_specificationDnsRecord.href,
-    ]
-    labels: labels.map(l=>l.name),
+    ],
 }
