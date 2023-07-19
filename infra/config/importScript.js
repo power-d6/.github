@@ -55,7 +55,7 @@ domains.forEach(d=> {
     );
     importScript.push(`mkdir domains/${cleanDomainName}/dns`)
     defaultDnsRecords.forEach(([rName, rType])=>{
-        var cleanRecordname = `${rType}-${rName.replace('@','at').replace(/[^a-zA-Z0-9 ]/g, '')}`;
+        var cleanRecordname = `${rType}_${rName.replace('@','at').replace(/[^a-zA-Z0-9 ]/g, '')}`;
         importScript.push(
             `pulumi import gandi:livedns/record:Record ${cleanRecordname}DnsRecord ${d}/${rName}/${rType} -y -o domains/${cleanDomainName}/dns/${cleanRecordname}.ts`,
             `sed -e 's/const ${cleanRecordname}DnsRecord/export const ${cleanRecordname}DnsRecord/' './domains/${cleanDomainName}/dns/${cleanRecordname}.ts'`,
