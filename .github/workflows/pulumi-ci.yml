@@ -20,23 +20,13 @@ jobs:
     name: Pulumi
     runs-on: ubuntu-latest
     steps:
-
-      - name: Turnstyle
-        if: ${{ github.event_name == 'push' }}
-        uses: softprops/turnstyle@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - uses: actions/checkout@v3
-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-
       - run: npm ci
         working-directory: ${{ env.PULUMI_WORKING_DIRECTORY }}
-
       - name: PR previews
         if: ${{ github.event_name == 'pull_request' }}
         uses: pulumi/actions@v3
@@ -44,7 +34,6 @@ jobs:
           command: preview
           stack-name: ${{ env.PULUMI_STACK_NAME }}
           work-dir: ${{ env.PULUMI_WORKING_DIRECTORY }}
-
       - name: Apply infrastructure update
         if: ${{ github.event_name == 'push' }}
         uses: pulumi/actions@v3
