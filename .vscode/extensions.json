@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "standard.vscode-standard",
+        "meganrogge.template-string-converter",
+        "yoavbls.pretty-ts-errors"
+    ]
+}

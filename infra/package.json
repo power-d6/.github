@@ -3,12 +3,16 @@
   "main": "index.ts",
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "^16"
+    "@types/node": "^16",
+    "ts-standard": "^12"
   },
   "dependencies": {
     "@pulumi/github": "^5",
     "@pulumi/pulumi": "^3",
     "@pulumiverse/gandi": "^0",
     "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "format": "npx ts-standard --fix"
   }
 }
