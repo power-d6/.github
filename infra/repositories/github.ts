@@ -1,21 +1,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
+import { commonRepositoryConfig } from "./_common";
+
 export const repository = new github.Repository("githubRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The location for shared artefacts, actions and documents for the entire organisation",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: ".github",
+    description: "The location for shared artefacts, actions and documents for the entire organisation",
     topics: [
         "github-actions",
         "contributing",
         "code-of-conduct",
         "profile",
     ],
-    visibility: "public",
-    vulnerabilityAlerts: true,
 }, {
     protect: true,
 });

@@ -1,27 +1,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
+
+import { commonRepositoryConfig } from "./_common";
 import * as gandi from "@pulumiverse/gandi";
 
 export const repository = new github.Repository("specificationRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The open specification for the powerd6 system and tools",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: "specification",
+    description: "The open specification for the powerd6 system and tools",
+    topics: [
+        "specification",
+        "json-schema",
+        "developer-tools",
+    ],
     pages: {
         cname: "specification.powerd6.org",
         source: {
             branch: "main",
         },
     },
-    topics: [
-        "specification",
-        "json-schema",
-        "developer-tools",
-    ],
-    visibility: "public",
-    vulnerabilityAlerts: true,
 }, {
     protect: true,
 });

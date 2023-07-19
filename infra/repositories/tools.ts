@@ -1,6 +1,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
+import { commonRepositoryConfig } from "./_common";
+
 export const repository = new github.Repository("toolsRepository", {
     allowMergeCommit: false,
     deleteBranchOnMerge: true,

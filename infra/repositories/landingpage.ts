@@ -1,26 +1,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
+
+import { commonRepositoryConfig } from "./_common";
 import * as gandi from "@pulumiverse/gandi";
 
 export const repository = new github.Repository("landingpageRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The landing page of the project",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: "landing-page",
+    description: "The landing page of the project",
+    topics: [
+        "website",
+        "landing-page",
+    ],
     pages: {
         cname: "powerd6.org",
         source: {
             branch: "main",
         },
     },
-    topics: [
-        "website",
-        "landing-page",
-    ],
-    visibility: "public",
-    vulnerabilityAlerts: true,
 }, {
     protect: true,
 });

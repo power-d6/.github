@@ -1,15 +1,12 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
+import { commonRepositoryConfig } from "./_common";
+
 export const repository = new github.Repository("corerulesRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The basic set of rules for the powerd6 system",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: "core-rules",
-    visibility: "public",
-    vulnerabilityAlerts: true,
+    description: "The basic set of rules for the powerd6 system",
 }, {
     protect: true,
 });
