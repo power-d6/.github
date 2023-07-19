@@ -15,7 +15,7 @@ export const repositories = {
 
 import { powerd6orgDomain } from './domains/powerd6org/domain';
 import { powerd6orgNameservers } from './domains/powerd6org/nameservers';
-import { A_atDnsRecord, AAAA_atDnsRecord } from './domains/powerd6org/dns/github_pages';
+import { A_atDnsRecord, AAAA_atDnsRecord } from './domains/powerd6org/dns/github_pages/github_pages';
 import {
     MX_atDnsRecord,
     SRV_imaptcpDnsRecord,
@@ -28,6 +28,9 @@ import {
     CNAME_gm3domainkeyDnsRecord,
     CNAME_webmailDnsRecord,
 } from './domains/powerd6org/dns/gandi_mail';
+
+import { CNAME_wwwDnsRecord, TXT_githubpageschallengepowerd6DnsRecord } from './domains/powerd6org/dns/github_pages/powerd6_org';
+import { CNAME_specificationDnsRecord, TXT_githubpageschallengepowerd6specificationDnsRecord } from './domains/powerd6org/dns/github_pages/specification_powerd6_org';
 
 export const domains = {
     powerd6org: {
@@ -46,6 +49,10 @@ export const domains = {
             CNAME_gm2domainkeyDnsRecord.href,
             CNAME_gm3domainkeyDnsRecord.href,
             CNAME_webmailDnsRecord.href,
+            CNAME_wwwDnsRecord.href,
+            TXT_githubpageschallengepowerd6DnsRecord.href,
+            CNAME_specificationDnsRecord.href,
+            TXT_githubpageschallengepowerd6specificationDnsRecord.href,
         ]
     }
 }
