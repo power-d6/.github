@@ -1,3 +1,9 @@
+import { output as powerd6Organization } from './organizations/powerd6';
+
+export const organizations = {
+    "powerd6": powerd6Organization,
+}
+
 import { output as githubRepository } from './repositories/github';
 import { output as landingpageRepository } from './repositories/landingpage';
 import { output as specificationRepository } from './repositories/specification';
