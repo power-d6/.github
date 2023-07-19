@@ -34,8 +34,32 @@ export function createDefaultBranch(repositoryName:string, repository: github.Re
         protect: true,
     });
 
+    const mainBranchProtection = new github.BranchProtection(`${repositoryName}MainBranchProtectionRule`, {
+        repositoryId: repository.nodeId,
+        pattern: mainBranch.branch,
+        enforceAdmins: false,
+
+        allowsDeletions: false,
+        allowsForcePushes: false,
+        
+        requireConversationResolution: true,
+        requireSignedCommits: true,
+        requiredLinearHistory: true,
+
+        requiredPullRequestReviews: [{
+            dismissStaleReviews: true,
+            restrictDismissals: true,
+            dismissalRestrictions: [
+                "/HectorCastelli",
+            ],
+        }],        
+    }, {
+        protect: true,
+    })
+
     return {
         mainBranch,
+        mainBranchProtection,
         defaultBranchRule,
     }
 }

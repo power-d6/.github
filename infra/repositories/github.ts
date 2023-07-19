@@ -17,11 +17,12 @@ export const repository = new github.Repository("githubRepository", {
     protect: true,
 });
 
-const {mainBranch, defaultBranchRule} = createDefaultBranch("githubRepository", repository);
+const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("githubRepository", repository);
 
 
 export const output = {
     repository: repository.name,
     mainBranch: mainBranch.branch,
+    mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
 }

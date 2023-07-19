@@ -11,10 +11,11 @@ export const repository = new github.Repository("corerulesRepository", {
     protect: true,
 });
 
-const {mainBranch, defaultBranchRule} = createDefaultBranch("corerulesRepository", repository);
+const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("corerulesRepository",repository);
 
 export const output = {
     repository: repository.name,
     mainBranch: mainBranch.branch,
+    mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
 }
