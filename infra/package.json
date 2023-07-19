@@ -2,11 +2,13 @@
   "name": "powerd6",
   "main": "index.ts",
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "@types/node": "^16"
   },
   "dependencies": {
-    "@pulumi/pulumi": "^3",
     "@pulumi/github": "^5",
-    "@pulumiverse/gandi": "^0"
+    "@pulumi/pulumi": "^3",
+    "@pulumiverse/gandi": "^0",
+    "js-yaml": "^4.1.0"
   }
 }

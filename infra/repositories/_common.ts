@@ -1,4 +1,7 @@
 import * as github from "@pulumi/github";
+import yaml = require('js-yaml');
+import fs = require('fs');
+import path = require("path");
 
 export const commonRepositoryConfig = {
     allowAutoMerge: false,
@@ -61,5 +64,28 @@ export function createDefaultBranch(repositoryName:string, repository: github.Re
         mainBranch,
         mainBranchProtection,
         defaultBranchRule,
+    }
+}
+
+export function createLabels(repositoryName:string, repository: github.Repository) {
+    const labelConfigurations = yaml.load(fs.readFileSync(path.resolve(__dirname, '../config/labels.yaml'), 'utf8')) as {
+        name: string
+        description: string
+        color: string
+    }[];
+
+    const labels = labelConfigurations.map(label => 
+      {
+        const labelResourceName = `${repositoryName}Label${label.name.replace(/[^a-zA-Z0-9]/g, '')}`;
+        return new github.IssueLabel(labelResourceName, {
+            name: label.name,
+            description: label.description,
+            color: label.color,
+            repository: repository.name,
+        })}
+    )
+
+    return {
+        labels,
     }
 }
