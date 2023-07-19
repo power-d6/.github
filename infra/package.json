@@ -5,8 +5,8 @@
     "@types/node": "^16"
   },
   "dependencies": {
-    "@pulumi/github": "^4.8.1",
-    "@pulumi/pulumi": "^3.19.0",
-    "@pulumiverse/gandi": "^0.0.14"
+    "@pulumi/pulumi": "^3",
+    "@pulumi/github": "^5",
+    "@pulumiverse/gandi": "^0"
   }
 }
