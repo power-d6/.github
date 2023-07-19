@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-import { commonRepositoryConfig } from "./_common";
+import { commonRepositoryConfig, createDefaultBranch } from "./_common";
 
 export const repository = new github.Repository("corerulesRepository", {
     ...commonRepositoryConfig,
@@ -11,19 +11,7 @@ export const repository = new github.Repository("corerulesRepository", {
     protect: true,
 });
 
-export const mainBranch = new github.Branch("corerulesRepositoryMainBranch", {
-    repository: repository.name,
-    branch: "main"
-}, {
-    protect: true,
-});
-
-export const defaultBranchRule = new github.BranchDefault("corerulesRepositoryDefaultBranch", {
-    repository: repository.name,
-    branch: mainBranch.branch,
-}, {
-    protect: true,
-});
+const {mainBranch, defaultBranchRule} = createDefaultBranch("corerulesRepository", repository);
 
 export const output = {
     repository: repository.name,
