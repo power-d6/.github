@@ -33,6 +33,7 @@ jobs:
           command: preview
           stack-name: ${{ env.PULUMI_STACK_NAME }}
           work-dir: ${{ env.PULUMI_WORKING_DIRECTORY }}
+          comment-on-pr: true
       - name: Apply infrastructure update
         if: ${{ github.event_name == 'push' }}
         uses: pulumi/actions@v4
