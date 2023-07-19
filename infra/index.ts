@@ -1,3 +1,6 @@
+import { readFileSync } from 'fs';
+export const readme = readFileSync("./Pulumi.README.md").toString();
+
 import { output as powerd6Organization } from './organizations/powerd6';
 
 export const organizations = {
