@@ -12,6 +12,7 @@ export const repository = new github.Repository("landingpageRepository", {
         "website",
         "landing-page",
     ],
+    homepageUrl: "https://powerd6.org",
     pages: {
         cname: "powerd6.org",
         source: {

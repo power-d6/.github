@@ -13,6 +13,7 @@ export const repository = new github.Repository("specificationRepository", {
         "json-schema",
         "developer-tools",
     ],
+    homepageUrl: "https://specification.powerd6.org",
     pages: {
         cname: "specification.powerd6.org",
         source: {
