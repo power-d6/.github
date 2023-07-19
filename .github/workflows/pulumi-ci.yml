@@ -1,4 +1,4 @@
-name: Continuous Integation (Infrastructure)
+name: Continuous Integration (Infrastructure)
 on:
   push:
     branches:
