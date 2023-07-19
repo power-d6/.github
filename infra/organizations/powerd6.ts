@@ -8,13 +8,13 @@ const organization = new github.OrganizationSettings("powerd6Organization", {
     email: "contact@powerd6.org",
 
     billingEmail: "hector.zacharias@gmail.com",
-    
+
     dependabotAlertsEnabledForNewRepositories: true,
     dependabotSecurityUpdatesEnabledForNewRepositories: true,
     dependencyGraphEnabledForNewRepositories: true,
     secretScanningEnabledForNewRepositories: true,
     webCommitSignoffRequired: true,
-    
+
     membersCanCreateRepositories: false,
     membersCanCreatePrivateRepositories: false,
     membersCanCreatePublicRepositories: false,

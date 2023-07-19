@@ -11,13 +11,13 @@ export const repository = new github.Repository("corerulesRepository", {
     protect: true,
 });
 
-const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("corerulesRepository",repository);
-const {labels} = createLabels("corerulesRepository", repository);
+const { mainBranch, mainBranchProtection, defaultBranchRule } = createDefaultBranch("corerulesRepository", repository);
+const { labels } = createLabels("corerulesRepository", repository);
 
 export const output = {
     repository: repository.name,
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
-    labels: labels.map(l=>l.name),
+    labels: labels.map(l => l.name),
 }

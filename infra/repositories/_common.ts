@@ -22,7 +22,7 @@ export const commonRepositoryConfig = {
     vulnerabilityAlerts: true,
 }
 
-export function createDefaultBranch(repositoryName:string, repository: github.Repository) {
+export function createDefaultBranch(repositoryName: string, repository: github.Repository) {
     const mainBranch = new github.Branch(`${repositoryName}MainBranch`, {
         repository: repository.name,
         branch: "main"
@@ -44,7 +44,7 @@ export function createDefaultBranch(repositoryName:string, repository: github.Re
 
         allowsDeletions: false,
         allowsForcePushes: false,
-        
+
         requireConversationResolution: true,
         requireSignedCommits: true,
         requiredLinearHistory: true,
@@ -55,7 +55,7 @@ export function createDefaultBranch(repositoryName:string, repository: github.Re
             dismissalRestrictions: [
                 "/HectorCastelli",
             ],
-        }],        
+        }],
     }, {
         protect: true,
     })
@@ -67,22 +67,22 @@ export function createDefaultBranch(repositoryName:string, repository: github.Re
     }
 }
 
-export function createLabels(repositoryName:string, repository: github.Repository) {
+export function createLabels(repositoryName: string, repository: github.Repository) {
     const labelConfigurations = yaml.load(fs.readFileSync(path.resolve(__dirname, '../config/labels.yaml'), 'utf8')) as {
         name: string
         description: string
         color: string
     }[];
 
-    const labels = labelConfigurations.map(label => 
-      {
+    const labels = labelConfigurations.map(label => {
         const labelResourceName = `${repositoryName}Label${label.name.replace(/[^a-zA-Z0-9]/g, '')}`;
         return new github.IssueLabel(labelResourceName, {
             name: label.name,
             description: label.description,
             color: label.color,
             repository: repository.name,
-        })}
+        })
+    }
     )
 
     return {

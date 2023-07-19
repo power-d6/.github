@@ -25,8 +25,8 @@ export const repository = new github.Repository("specificationRepository", {
 });
 
 
-const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("specificationRepository", repository);
-const {labels} = createLabels("specificationRepository", repository);
+const { mainBranch, mainBranchProtection, defaultBranchRule } = createDefaultBranch("specificationRepository", repository);
+const { labels } = createLabels("specificationRepository", repository);
 
 
 export const TXT_githubpageschallengepowerd6specificationDnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6specificationDnsRecord", {
@@ -54,7 +54,7 @@ export const output = {
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
-    labels: labels.map(l=>l.name),
+    labels: labels.map(l => l.name),
     githubPages: [
         TXT_githubpageschallengepowerd6specificationDnsRecord.href,
         CNAME_specificationDnsRecord.href,

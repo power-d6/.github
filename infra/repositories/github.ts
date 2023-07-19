@@ -17,8 +17,8 @@ export const repository = new github.Repository("githubRepository", {
     protect: true,
 });
 
-const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("githubRepository", repository);
-const {labels} = createLabels("githubRepository", repository);
+const { mainBranch, mainBranchProtection, defaultBranchRule } = createDefaultBranch("githubRepository", repository);
+const { labels } = createLabels("githubRepository", repository);
 
 
 export const output = {
@@ -26,5 +26,5 @@ export const output = {
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
-    labels: labels.map(l=>l.name),
+    labels: labels.map(l => l.name),
 }

@@ -23,8 +23,8 @@ export const repository = new github.Repository("landingpageRepository", {
     protect: true,
 });
 
-const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("landingpageRepository", repository);
-const {labels} = createLabels("landingpageRepository", repository);
+const { mainBranch, mainBranchProtection, defaultBranchRule } = createDefaultBranch("landingpageRepository", repository);
+const { labels } = createLabels("landingpageRepository", repository);
 
 export const TXT_githubpageschallengepowerd6DnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6DnsRecord", {
     name: "_github-pages-challenge-powerd6",
@@ -53,7 +53,7 @@ export const output = {
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
-    labels: labels.map(l=>l.name),
+    labels: labels.map(l => l.name),
     githubPages: [
         TXT_githubpageschallengepowerd6DnsRecord.href,
         CNAME_wwwDnsRecord.href,
