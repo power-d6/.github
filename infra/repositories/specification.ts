@@ -1,9 +1,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-export const specificationRepository = new github.Repository("specificationRepository", {
+export const repository = new github.Repository("specificationRepository", {
     allowMergeCommit: false,
-    defaultBranch: "main",
     deleteBranchOnMerge: true,
     description: "The open specification for the powerd6 system and tools",
     hasDownloads: true,
@@ -25,3 +24,24 @@ export const specificationRepository = new github.Repository("specificationRepos
 }, {
     protect: true,
 });
+
+export const mainBranch = new github.Branch("specificationRepositoryMainBranch", {
+    repository: repository.name,
+    branch: "main"
+}, {
+    protect: true,
+});
+
+export const defaultBranchRule = new github.BranchDefault("specificationRepositoryDefaultBranch", {
+    repository: repository.name,
+    branch: mainBranch.branch,
+}, {
+    protect: true,
+});
+
+
+export const output = {
+    repository: repository.name,
+    mainBranch: mainBranch.branch,
+    defaultBranchRule: defaultBranchRule.branch,
+}

@@ -1,21 +1,20 @@
-
-import { githubRepository } from './repositories/github';
-import { landingpageRepository } from './repositories/landingpage';
-import { specificationRepository } from './repositories/specification';
-import { toolsRepository } from './repositories/tools';
-import { corerulesRepository } from './repositories/corerules';
+import {output as githubRepository} from './repositories/github';
+import { output as landingpageRepository} from './repositories/landingpage';
+import { output as specificationRepository} from './repositories/specification';
+import { output as toolsRepository} from './repositories/tools';
+import { output as corerulesRepository} from './repositories/corerules';
 
 export const repositories = {
-    github: githubRepository.name,
-    landingpage: landingpageRepository.name,
-    specification: specificationRepository.name,
-    tools: toolsRepository.name,
-    corerules: corerulesRepository.name,
+    "github": githubRepository,
+    "landingpage": landingpageRepository,
+    "specification": specificationRepository,
+    "tools": toolsRepository,
+    "corerules": corerulesRepository,
 }
 
 import { powerd6orgDomain } from './domains/powerd6org/domain';
 import { powerd6orgNameservers } from './domains/powerd6org/nameservers';
-import { A_atDnsRecord, AAAA_atDnsRecord } from './domains/powerd6org/dns/github_pages/github_pages';
+import { A_atDnsRecord, AAAA_atDnsRecord } from './domains/powerd6org/dns/github_pages';
 import {
     MX_atDnsRecord,
     SRV_imaptcpDnsRecord,

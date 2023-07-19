@@ -1,9 +1,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-export const landingpageRepository = new github.Repository("landingpageRepository", {
+export const repository = new github.Repository("landingpageRepository", {
     allowMergeCommit: false,
-    defaultBranch: "main",
     deleteBranchOnMerge: true,
     description: "The landing page of the project",
     hasDownloads: true,
@@ -24,3 +23,24 @@ export const landingpageRepository = new github.Repository("landingpageRepositor
 }, {
     protect: true,
 });
+
+export const mainBranch = new github.Branch("landingpageRepositoryMainBranch", {
+    repository: repository.name,
+    branch: "main"
+}, {
+    protect: true,
+});
+
+export const defaultBranchRule = new github.BranchDefault("landingpageRepositoryDefaultBranch", {
+    repository: repository.name,
+    branch: mainBranch.branch,
+}, {
+    protect: true,
+});
+
+
+export const output = {
+    repository: repository.name,
+    mainBranch: mainBranch.branch,
+    defaultBranchRule: defaultBranchRule.branch,
+}
