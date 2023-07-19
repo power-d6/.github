@@ -1,41 +1,30 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
+import { commonRepositoryConfig, createDefaultBranch, createLabels } from "./_common";
+
 export const repository = new github.Repository("githubRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The location for shared artefacts, actions and documents for the entire organisation",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: ".github",
+    description: "The location for shared artefacts, actions and documents for the entire organisation",
     topics: [
         "github-actions",
         "contributing",
         "code-of-conduct",
         "profile",
     ],
-    visibility: "public",
-    vulnerabilityAlerts: true,
 }, {
     protect: true,
 });
 
-export const mainBranch = new github.Branch("githubRepositoryMainBranch", {
-    repository: repository.name,
-    branch: "main"
-}, {
-    protect: true,
-});
+const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("githubRepository", repository);
+const {labels} = createLabels("githubRepository", repository);
 
-export const defaultBranchRule = new github.BranchDefault("githubRepositoryDefaultBranch", {
-    repository: repository.name,
-    branch: mainBranch.branch,
-}, {
-    protect: true,
-});
 
 export const output = {
     repository: repository.name,
     mainBranch: mainBranch.branch,
+    mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
+    labels: labels.map(l=>l.name),
 }

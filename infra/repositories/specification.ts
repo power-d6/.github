@@ -1,44 +1,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
+
+import { commonRepositoryConfig, createDefaultBranch, createLabels } from "./_common";
 import * as gandi from "@pulumiverse/gandi";
 
 export const repository = new github.Repository("specificationRepository", {
-    allowMergeCommit: false,
-    deleteBranchOnMerge: true,
-    description: "The open specification for the powerd6 system and tools",
-    hasDownloads: true,
-    hasIssues: true,
+    ...commonRepositoryConfig,
     name: "specification",
+    description: "The open specification for the powerd6 system and tools",
+    topics: [
+        "specification",
+        "json-schema",
+        "developer-tools",
+    ],
+    homepageUrl: "https://specification.powerd6.org",
     pages: {
         cname: "specification.powerd6.org",
         source: {
             branch: "main",
         },
     },
-    topics: [
-        "specification",
-        "json-schema",
-        "developer-tools",
-    ],
-    visibility: "public",
-    vulnerabilityAlerts: true,
 }, {
     protect: true,
 });
 
-export const mainBranch = new github.Branch("specificationRepositoryMainBranch", {
-    repository: repository.name,
-    branch: "main"
-}, {
-    protect: true,
-});
 
-export const defaultBranchRule = new github.BranchDefault("specificationRepositoryDefaultBranch", {
-    repository: repository.name,
-    branch: mainBranch.branch,
-}, {
-    protect: true,
-});
+const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("specificationRepository", repository);
+const {labels} = createLabels("specificationRepository", repository);
+
 
 export const TXT_githubpageschallengepowerd6specificationDnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6specificationDnsRecord", {
     name: "_github-pages-challenge-powerd6.specification",
@@ -63,9 +52,11 @@ export const CNAME_specificationDnsRecord = new gandi.livedns.Record("CNAME_spec
 export const output = {
     repository: repository.name,
     mainBranch: mainBranch.branch,
+    mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
+    labels: labels.map(l=>l.name),
     githubPages: [
         TXT_githubpageschallengepowerd6specificationDnsRecord.href,
         CNAME_specificationDnsRecord.href,
-    ]
+    ],
 }
