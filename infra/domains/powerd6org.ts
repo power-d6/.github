@@ -1,6 +1,49 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as gandi from "@pulumiverse/gandi";
 
+export const domainOwner = {
+    city: "Malpica de Bergantiños",
+    country: "ES",
+    dataObfuscated: true,
+    email: "hector.zacharias@gmail.com",
+    extraParameters: {
+        birth_city: "",
+        birth_country: "",
+        birth_date: "",
+        birth_department: "",
+    },
+    familyName: "Castelli Zacharias",
+    givenName: "Héctor",
+    mailObfuscated: true,
+    phone: "+34.677059383",
+    state: "ES-C",
+    streetAddr: "Rua Canido 57",
+    type: "person",
+    zip: "15113",
+};
+
+export const domain = new gandi.domains.Domain("powerd6orgDomain", {
+    admin: domainOwner,
+    billing: domainOwner,
+    name: "powerd6.org",
+    owner: domainOwner,
+    tech: domainOwner,
+}, {
+    protect: true,
+});
+
+export const nameservers = new gandi.domains.Nameservers("powerd6orgNameservers", {
+    domain: domain.name,
+    nameservers: [
+        "ns-168-a.gandi.net",
+        "ns-138-b.gandi.net",
+        "ns-19-c.gandi.net",
+    ],
+}, {
+    protect: true,
+});
+
+
 export const CNAME_gm1domainkeyDnsRecord = new gandi.livedns.Record("CNAME-gm1domainkeyDnsRecord", {
     name: "gm1._domainkey",
     ttl: 10800,
@@ -103,3 +146,57 @@ export const SRV_submissiontcpDnsRecord = new gandi.livedns.Record("SRV-submissi
 }, {
     protect: true,
 });
+
+
+export const A_atDnsRecord = new gandi.livedns.Record("A-atDnsRecord", {
+    name: "@",
+    ttl: 3600,
+    type: "A",
+    values: [
+        "185.199.109.153",
+        "185.199.111.153",
+        "185.199.108.153",
+        "185.199.110.153",
+    ],
+    zone: "powerd6.org",
+}, {
+    protect: true,
+});
+
+export const AAAA_atDnsRecord = new gandi.livedns.Record("AAAA-atDnsRecord", {
+    name: "@",
+    ttl: 3600,
+    type: "AAAA",
+    values: [
+        "2606:50c0:8000::153",
+        "2606:50c0:8003::153",
+        "2606:50c0:8002::153",
+        "2606:50c0:8001::153",
+    ],
+    zone: "powerd6.org",
+}, {
+    protect: true,
+});
+
+export const output = {
+    domain: domain.name,
+    nameservers: nameservers.id,
+    dns: {
+        "mailserver": [
+            CNAME_gm1domainkeyDnsRecord.href,
+            CNAME_gm2domainkeyDnsRecord.href,
+            CNAME_gm3domainkeyDnsRecord.href,
+            CNAME_webmailDnsRecord.href,
+            MX_atDnsRecord.href,
+            SRV_imaptcpDnsRecord.href,
+            SRV_imapstcpDnsRecord.href,
+            SRV_pop3tcpDnsRecord.href,
+            SRV_pop3stcpDnsRecord.href,
+            SRV_submissiontcpDnsRecord.href,
+        ],
+        "github-pages": [
+            A_atDnsRecord.href,
+            AAAA_atDnsRecord.href,
+        ]
+    }
+}
