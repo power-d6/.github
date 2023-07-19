@@ -1,0 +1,25 @@
+@ 10800 IN SOA ns1.gandi.net. hostmaster.gandi.net. 1687161962 10800 3600 604800 10800
+@ 3600 IN A 185.199.108.153
+@ 3600 IN A 185.199.109.153
+@ 3600 IN A 185.199.110.153
+@ 3600 IN A 185.199.111.153
+@ 3600 IN AAAA 2606:50c0:8000::153
+@ 3600 IN AAAA 2606:50c0:8001::153
+@ 3600 IN AAAA 2606:50c0:8002::153
+@ 3600 IN AAAA 2606:50c0:8003::153
+@ 10800 IN MX 10 spool.mail.gandi.net.
+@ 10800 IN MX 50 fb.mail.gandi.net.
+@ 10800 IN TXT "v=spf1 include:_mailcust.gandi.net ?all"
+_github-pages-challenge-powerd6 10800 IN TXT "0fff03dd80f06accdca1457d1a710f"
+_github-pages-challenge-powerd6.specification 10800 IN TXT "c0ff5e26529a675386942853f550d8"
+_imap._tcp 10800 IN SRV 0 0 0 .
+_imaps._tcp 10800 IN SRV 0 1 993 mail.gandi.net.
+_pop3._tcp 10800 IN SRV 0 0 0 .
+_pop3s._tcp 10800 IN SRV 10 1 995 mail.gandi.net.
+_submission._tcp 10800 IN SRV 0 1 465 mail.gandi.net.
+gm1._domainkey 10800 IN CNAME gm1.gandimail.net.
+gm2._domainkey 10800 IN CNAME gm2.gandimail.net.
+gm3._domainkey 10800 IN CNAME gm3.gandimail.net.
+specification 10800 IN CNAME powerd6.github.io.
+webmail 10800 IN CNAME webmail.gandi.net.
+www 10800 IN CNAME powerd6.github.io.
