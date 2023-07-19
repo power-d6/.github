@@ -1,20 +1,51 @@
 
-import {githubRepository} from './repositories/github';
-import {landingpageRepository} from './repositories/landingpage';
-import {specificationRepository} from './repositories/specification';
-import {toolsRepository} from './repositories/tools';
-import {corerulesRepository} from './repositories/corerules';
-import {powerd6orgDomain} from './domains/powerd6org/domain.ts';
-import {powerd6orgNameservers} from './domains/powerd6org/nameservers.ts';
-import {A-atDnsRecord} from './domains/powerd6org/dns/A-at.ts';
-import {AAAA-atDnsRecord} from './domains/powerd6org/dns/AAAA-at.ts';
-import {MX-atDnsRecord} from './domains/powerd6org/dns/MX-at.ts';
-import {SRV-imaptcpDnsRecord} from './domains/powerd6org/dns/SRV-imaptcp.ts';
-import {SRV-imapstcpDnsRecord} from './domains/powerd6org/dns/SRV-imapstcp.ts';
-import {SRV-pop3tcpDnsRecord} from './domains/powerd6org/dns/SRV-pop3tcp.ts';
-import {SRV-pop3stcpDnsRecord} from './domains/powerd6org/dns/SRV-pop3stcp.ts';
-import {SRV-submissiontcpDnsRecord} from './domains/powerd6org/dns/SRV-submissiontcp.ts';
-import {CNAME-gm1domainkeyDnsRecord} from './domains/powerd6org/dns/CNAME-gm1domainkey.ts';
-import {CNAME-gm2domainkeyDnsRecord} from './domains/powerd6org/dns/CNAME-gm2domainkey.ts';
-import {CNAME-gm3domainkeyDnsRecord} from './domains/powerd6org/dns/CNAME-gm3domainkey.ts';
-import {CNAME-webmailDnsRecord} from './domains/powerd6org/dns/CNAME-webmail.ts';
+import { githubRepository } from './repositories/github';
+import { landingpageRepository } from './repositories/landingpage';
+import { specificationRepository } from './repositories/specification';
+import { toolsRepository } from './repositories/tools';
+import { corerulesRepository } from './repositories/corerules';
+
+export const repositories = {
+    github: githubRepository.name,
+    landingpage: landingpageRepository.name,
+    specification: specificationRepository.name,
+    tools: toolsRepository.name,
+    corerules: corerulesRepository.name,
+}
+
+import { powerd6orgDomain } from './domains/powerd6org/domain';
+import { powerd6orgNameservers } from './domains/powerd6org/nameservers';
+import { A_atDnsRecord, AAAA_atDnsRecord } from './domains/powerd6org/dns/github_pages';
+import {
+    MX_atDnsRecord,
+    SRV_imaptcpDnsRecord,
+    SRV_imapstcpDnsRecord,
+    SRV_pop3tcpDnsRecord,
+    SRV_pop3stcpDnsRecord,
+    SRV_submissiontcpDnsRecord,
+    CNAME_gm1domainkeyDnsRecord,
+    CNAME_gm2domainkeyDnsRecord,
+    CNAME_gm3domainkeyDnsRecord,
+    CNAME_webmailDnsRecord,
+} from './domains/powerd6org/dns/gandi_mail';
+
+export const domains = {
+    powerd6org: {
+        domain: powerd6orgDomain.name,
+        nameservers: powerd6orgNameservers.id,
+        dns: [
+            A_atDnsRecord.href,
+            AAAA_atDnsRecord.href,
+            MX_atDnsRecord.href,
+            SRV_imaptcpDnsRecord.href,
+            SRV_imapstcpDnsRecord.href,
+            SRV_pop3tcpDnsRecord.href,
+            SRV_pop3stcpDnsRecord.href,
+            SRV_submissiontcpDnsRecord.href,
+            CNAME_gm1domainkeyDnsRecord.href,
+            CNAME_gm2domainkeyDnsRecord.href,
+            CNAME_gm3domainkeyDnsRecord.href,
+            CNAME_webmailDnsRecord.href,
+        ]
+    }
+}

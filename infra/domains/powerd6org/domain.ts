@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as gandi from "@pulumiverse/gandi";
 
-const powerd6orgDomain = new gandi.domains.Domain("powerd6orgDomain", {
+export const powerd6orgDomain = new gandi.domains.Domain("powerd6orgDomain", {
     admin: {
         city: "Malpica de Bergantiños",
         country: "ES",
