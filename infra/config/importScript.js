@@ -44,13 +44,13 @@ domains.forEach(d=> {
         `mkdir domains/${cleanDomainName}`,
         `pulumi import gandi:domains/domain:Domain ${cleanDomainName}Domain ${d} -y -o domains/${cleanDomainName}/domain.ts`,
         `sed -e 's/const ${cleanDomainName}domains/export const ${cleanDomainName}domains/' './domains/${cleanDomainName}/domain.ts'`,
-        `echo "import {${cleanDomainName}Domain} from './domains/${cleanDomainName}/domain.ts';" >> index.ts`,
+        `echo "import {${cleanDomainName}Domain} from './domains/${cleanDomainName}/domain';" >> index.ts`,
         `sleep 5`,
     );
     importScript.push(
         `pulumi import gandi:domains/nameservers:Nameservers ${cleanDomainName}Nameservers ${d} -y -o domains/${cleanDomainName}/nameservers.ts`,
         `sed -e 's/const ${cleanDomainName}Nameservers/export const ${cleanDomainName}Nameservers/' './domains/${cleanDomainName}/nameservers.ts'`,
-        `echo "import {${cleanDomainName}Nameservers} from './domains/${cleanDomainName}/nameservers.ts';" >> index.ts`,
+        `echo "import {${cleanDomainName}Nameservers} from './domains/${cleanDomainName}/nameservers';" >> index.ts`,
         `sleep 5`,
     );
     importScript.push(`mkdir domains/${cleanDomainName}/dns`)
@@ -59,7 +59,7 @@ domains.forEach(d=> {
         importScript.push(
             `pulumi import gandi:livedns/record:Record ${cleanRecordname}DnsRecord ${d}/${rName}/${rType} -y -o domains/${cleanDomainName}/dns/${cleanRecordname}.ts`,
             `sed -e 's/const ${cleanRecordname}DnsRecord/export const ${cleanRecordname}DnsRecord/' './domains/${cleanDomainName}/dns/${cleanRecordname}.ts'`,
-            `echo "import {${cleanRecordname}DnsRecord} from './domains/${cleanDomainName}/dns/${cleanRecordname}.ts';" >> index.ts`,
+            `echo "import {${cleanRecordname}DnsRecord} from './domains/${cleanDomainName}/dns/${cleanRecordname}';" >> index.ts`,
             `sleep 5`,
         );
     })
