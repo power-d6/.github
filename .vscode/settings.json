@@ -1,0 +1,7 @@
+{
+    "standard.autoFixOnSave": true,
+    "standard.engine": "ts-standard",
+    "standard.workingDirectories": [
+        "infra"
+    ]
+}
