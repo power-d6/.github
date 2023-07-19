@@ -1,4 +1,4 @@
-name: Preview or update Pulumi app powerd6/powerd6/live
+name: Continuous Integation (Infrastructure)
 on:
   push:
     branches:
