@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-import { commonRepositoryConfig, createDefaultBranch } from "./_common";
+import { commonRepositoryConfig, createDefaultBranch, createLabels } from "./_common";
 import * as gandi from "@pulumiverse/gandi";
 
 export const repository = new github.Repository("specificationRepository", {
@@ -26,6 +26,7 @@ export const repository = new github.Repository("specificationRepository", {
 
 
 const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("specificationRepository", repository);
+const {labels} = createLabels("specificationRepository", repository);
 
 
 export const TXT_githubpageschallengepowerd6specificationDnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6specificationDnsRecord", {
@@ -57,4 +58,5 @@ export const output = {
         TXT_githubpageschallengepowerd6specificationDnsRecord.href,
         CNAME_specificationDnsRecord.href,
     ]
+    labels: labels.map(l=>l.name),
 }

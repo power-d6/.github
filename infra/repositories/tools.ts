@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-import { commonRepositoryConfig, createDefaultBranch } from "./_common";
+import { commonRepositoryConfig, createDefaultBranch, createLabels } from "./_common";
 
 export const repository = new github.Repository("toolsRepository", {
     allowMergeCommit: false,
@@ -22,6 +22,7 @@ export const repository = new github.Repository("toolsRepository", {
 
 
 const {mainBranch, mainBranchProtection, defaultBranchRule} = createDefaultBranch("toolsRepository", repository);
+const {labels} = createLabels("toolsRepository", repository);
 
 
 export const output = {
@@ -29,4 +30,5 @@ export const output = {
     mainBranch: mainBranch.branch,
     mainBranchProtection: mainBranchProtection.id,
     defaultBranchRule: defaultBranchRule.branch,
+    labels: labels.map(l=>l.name),
 }
