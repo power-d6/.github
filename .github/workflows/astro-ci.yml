@@ -1,4 +1,4 @@
-name: Continuous Intregration (Astro)
+name: Continuous Integration (Astro)
 on:
   workflow_call:
 jobs:
