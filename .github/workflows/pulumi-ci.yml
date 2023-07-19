@@ -22,19 +22,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
       - run: npm ci
         working-directory: ${{ env.PULUMI_WORKING_DIRECTORY }}
       - name: PR previews
         if: ${{ github.event_name == 'pull_request' }}
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@v4
         with:
           command: preview
           stack-name: ${{ env.PULUMI_STACK_NAME }}
           work-dir: ${{ env.PULUMI_WORKING_DIRECTORY }}
       - name: Apply infrastructure update
         if: ${{ github.event_name == 'push' }}
-        uses: pulumi/actions@v3
+        uses: pulumi/actions@v4
         with:
           command: up
           stack-name: ${{ env.PULUMI_STACK_NAME }}
