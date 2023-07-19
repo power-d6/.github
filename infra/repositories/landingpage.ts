@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-import { commonRepositoryConfig } from "./_common";
+import { commonRepositoryConfig, createDefaultBranch } from "./_common";
 import * as gandi from "@pulumiverse/gandi";
 
 export const repository = new github.Repository("landingpageRepository", {
@@ -23,19 +23,7 @@ export const repository = new github.Repository("landingpageRepository", {
     protect: true,
 });
 
-export const mainBranch = new github.Branch("landingpageRepositoryMainBranch", {
-    repository: repository.name,
-    branch: "main"
-}, {
-    protect: true,
-});
-
-export const defaultBranchRule = new github.BranchDefault("landingpageRepositoryDefaultBranch", {
-    repository: repository.name,
-    branch: mainBranch.branch,
-}, {
-    protect: true,
-});
+const {mainBranch, defaultBranchRule} = createDefaultBranch("landingpageRepository", repository);
 
 export const TXT_githubpageschallengepowerd6DnsRecord = new gandi.livedns.Record("TXT_githubpageschallengepowerd6DnsRecord", {
     name: "_github-pages-challenge-powerd6",

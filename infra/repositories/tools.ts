@@ -1,7 +1,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as github from "@pulumi/github";
 
-import { commonRepositoryConfig } from "./_common";
+import { commonRepositoryConfig, createDefaultBranch } from "./_common";
 
 export const repository = new github.Repository("toolsRepository", {
     allowMergeCommit: false,
@@ -20,19 +20,8 @@ export const repository = new github.Repository("toolsRepository", {
     protect: true,
 });
 
-export const mainBranch = new github.Branch("toolsRepositoryMainBranch", {
-    repository: repository.name,
-    branch: "main"
-}, {
-    protect: true,
-});
 
-export const defaultBranchRule = new github.BranchDefault("toolsRepositoryDefaultBranch", {
-    repository: repository.name,
-    branch: mainBranch.branch,
-}, {
-    protect: true,
-});
+const {mainBranch, defaultBranchRule} = createDefaultBranch("toolsRepository", repository);
 
 
 export const output = {
