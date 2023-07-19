@@ -2,14 +2,14 @@ name: Continuous Integation (Infrastructure)
 on:
   push:
     branches:
-      - master
+      - main
     paths:
-      - '**/*'
+      - '/infra/*'
   pull_request:
     branches:
-      - master
+      - main
     paths:
-      - '**/*'
+      - '/infra/*'
 
 
 env:
