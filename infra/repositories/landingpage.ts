@@ -34,7 +34,6 @@ export const TXT_githubpageschallengepowerd6DnsRecord = new gandi.livedns.Record
   values: ['"0fff03dd80f06accdca1457d1a710f"'],
   zone: 'powerd6.org'
 }, {
-  protect: true,
   parent: nameservers,
 })
 
@@ -45,7 +44,6 @@ export const CNAME_wwwDnsRecord = new gandi.livedns.Record('CNAME_wwwDnsRecord',
   values: ['powerd6.github.io.'],
   zone: 'powerd6.org'
 }, {
-  protect: true,
   parent: nameservers,
 })
 
