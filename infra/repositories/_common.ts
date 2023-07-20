@@ -27,14 +27,16 @@ export function createDefaultBranch (repositoryName: string, repository: github.
     repository: repository.name,
     branch: 'main'
   }, {
-    protect: true
+    protect: true,
+    parent: repository,
   })
 
   const defaultBranchRule = new github.BranchDefault(`${repositoryName}DefaultBranch`, {
     repository: repository.name,
     branch: mainBranch.branch
   }, {
-    protect: true
+    protect: true,
+    parent: mainBranch,
   })
 
   const mainBranchProtection = new github.BranchProtection(`${repositoryName}MainBranchProtectionRule`, {
@@ -57,7 +59,8 @@ export function createDefaultBranch (repositoryName: string, repository: github.
       ]
     }]
   }, {
-    protect: true
+    protect: true,
+    parent: mainBranch,
   })
 
   return {
@@ -81,6 +84,8 @@ export function createLabels (repositoryName: string, repository: github.Reposit
       description: label.description,
       color: label.color,
       repository: repository.name
+    }, {
+      parent: repository,
     })
   }
   )
