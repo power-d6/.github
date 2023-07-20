@@ -1,8 +1,9 @@
 import * as pulumi from '@pulumi/pulumi'
 import * as github from '@pulumi/github'
+import * as gandi from '@pulumiverse/gandi'
 
 import { commonRepositoryConfig, createDefaultBranch, createLabels } from './_common'
-import * as gandi from '@pulumiverse/gandi'
+import { nameservers } from '../domains/powerd6org';
 
 export const repository = new github.Repository('landingpageRepository', {
   ...commonRepositoryConfig,
@@ -33,7 +34,8 @@ export const TXT_githubpageschallengepowerd6DnsRecord = new gandi.livedns.Record
   values: ['"0fff03dd80f06accdca1457d1a710f"'],
   zone: 'powerd6.org'
 }, {
-  protect: true
+  protect: true,
+  parent: nameservers,
 })
 
 export const CNAME_wwwDnsRecord = new gandi.livedns.Record('CNAME_wwwDnsRecord', {
@@ -43,7 +45,8 @@ export const CNAME_wwwDnsRecord = new gandi.livedns.Record('CNAME_wwwDnsRecord',
   values: ['powerd6.github.io.'],
   zone: 'powerd6.org'
 }, {
-  protect: true
+  protect: true,
+  parent: nameservers,
 })
 
 export const output = {
