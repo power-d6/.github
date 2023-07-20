@@ -29,7 +29,7 @@ export const domain = new gandi.domains.Domain('powerd6orgDomain', {
   owner: domainOwner,
   tech: domainOwner
 }, {
-  protect: true
+  protect: true,
 })
 
 export const nameservers = new gandi.domains.Nameservers('powerd6orgNameservers', {
@@ -40,7 +40,7 @@ export const nameservers = new gandi.domains.Nameservers('powerd6orgNameservers'
     'ns-19-c.gandi.net'
   ]
 }, {
-  protect: true
+  parent: domain,
 })
 
 export const CNAME_gm1domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm1domainkeyDnsRecord', {
@@ -48,9 +48,9 @@ export const CNAME_gm1domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm1do
   ttl: 10800,
   type: 'CNAME',
   values: ['gm1.gandimail.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const CNAME_gm2domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm2domainkeyDnsRecord', {
@@ -58,9 +58,9 @@ export const CNAME_gm2domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm2do
   ttl: 10800,
   type: 'CNAME',
   values: ['gm2.gandimail.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const CNAME_gm3domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm3domainkeyDnsRecord', {
@@ -68,9 +68,9 @@ export const CNAME_gm3domainkeyDnsRecord = new gandi.livedns.Record('CNAME-gm3do
   ttl: 10800,
   type: 'CNAME',
   values: ['gm3.gandimail.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const CNAME_webmailDnsRecord = new gandi.livedns.Record('CNAME-webmailDnsRecord', {
@@ -78,9 +78,9 @@ export const CNAME_webmailDnsRecord = new gandi.livedns.Record('CNAME-webmailDns
   ttl: 10800,
   type: 'CNAME',
   values: ['webmail.gandi.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const MX_atDnsRecord = new gandi.livedns.Record('MX-atDnsRecord', {
@@ -91,9 +91,9 @@ export const MX_atDnsRecord = new gandi.livedns.Record('MX-atDnsRecord', {
     '50 fb.mail.gandi.net.',
     '10 spool.mail.gandi.net.'
   ],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const SRV_imaptcpDnsRecord = new gandi.livedns.Record('SRV-imaptcpDnsRecord', {
@@ -101,9 +101,9 @@ export const SRV_imaptcpDnsRecord = new gandi.livedns.Record('SRV-imaptcpDnsReco
   ttl: 10800,
   type: 'SRV',
   values: ['0 0 0 .'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const SRV_imapstcpDnsRecord = new gandi.livedns.Record('SRV-imapstcpDnsRecord', {
@@ -111,9 +111,9 @@ export const SRV_imapstcpDnsRecord = new gandi.livedns.Record('SRV-imapstcpDnsRe
   ttl: 10800,
   type: 'SRV',
   values: ['0 1 993 mail.gandi.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const SRV_pop3tcpDnsRecord = new gandi.livedns.Record('SRV-pop3tcpDnsRecord', {
@@ -121,9 +121,9 @@ export const SRV_pop3tcpDnsRecord = new gandi.livedns.Record('SRV-pop3tcpDnsReco
   ttl: 10800,
   type: 'SRV',
   values: ['0 0 0 .'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const SRV_pop3stcpDnsRecord = new gandi.livedns.Record('SRV-pop3stcpDnsRecord', {
@@ -131,9 +131,9 @@ export const SRV_pop3stcpDnsRecord = new gandi.livedns.Record('SRV-pop3stcpDnsRe
   ttl: 10800,
   type: 'SRV',
   values: ['10 1 995 mail.gandi.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const SRV_submissiontcpDnsRecord = new gandi.livedns.Record('SRV-submissiontcpDnsRecord', {
@@ -141,9 +141,9 @@ export const SRV_submissiontcpDnsRecord = new gandi.livedns.Record('SRV-submissi
   ttl: 10800,
   type: 'SRV',
   values: ['0 1 465 mail.gandi.net.'],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const A_atDnsRecord = new gandi.livedns.Record('A-atDnsRecord', {
@@ -156,9 +156,9 @@ export const A_atDnsRecord = new gandi.livedns.Record('A-atDnsRecord', {
     '185.199.108.153',
     '185.199.110.153'
   ],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const AAAA_atDnsRecord = new gandi.livedns.Record('AAAA-atDnsRecord', {
@@ -171,9 +171,9 @@ export const AAAA_atDnsRecord = new gandi.livedns.Record('AAAA-atDnsRecord', {
     '2606:50c0:8002::153',
     '2606:50c0:8001::153'
   ],
-  zone: 'powerd6.org'
+  zone: domain.id,
 }, {
-  protect: true
+  parent: nameservers,
 })
 
 export const output = {
